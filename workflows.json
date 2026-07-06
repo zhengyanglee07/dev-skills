@@ -1,0 +1,126 @@
+{
+  "schema_version": 1,
+  "_comment": "Machine-readable state machines for each work type. Used by scripts/validate_transition.py. Edit this file to change workflows; do not edit the SKILL.md state-machine descriptions in-line. The wildcard '*' in 'from' means 'from any non-final status' unless the transition explicitly lists a final status.",
+  "workflows": {
+    "backlog": {
+      "label": "Backlog",
+      "initial_status": "Needs Clarification",
+      "final_statuses": ["Converted", "Cancelled"],
+      "statuses": ["Needs Clarification", "Ready", "Converted", "Cancelled"],
+      "transitions": [
+        {"label": "Clarified",              "from": "Needs Clarification", "to": "Ready"},
+        {"label": "Back to Clarification",  "from": "Ready",               "to": "Needs Clarification"},
+        {"label": "Convert",                "from": "Ready",               "to": "Converted"},
+        {"label": "Cancel",                 "from": "*",                   "to": "Cancelled"},
+        {"label": "Reopen",                 "from": "Cancelled",           "to": "Needs Clarification"}
+      ]
+    },
+    "action": {
+      "label": "Action",
+      "initial_status": "To Do",
+      "final_statuses": ["Closed", "Cancelled"],
+      "statuses": ["To Do", "In Progress", "Closed", "Cancelled"],
+      "transitions": [
+        {"label": "In Progress",  "from": "To Do",       "to": "In Progress"},
+        {"label": "Done",         "from": "In Progress", "to": "Closed"},
+        {"label": "Cancel",       "from": "*",           "to": "Cancelled"},
+        {"label": "Reopen",       "from": "Cancelled",   "to": "To Do"}
+      ]
+    },
+    "bug": {
+      "label": "Bug",
+      "initial_status": "To Do",
+      "final_statuses": ["Closed", "Cancelled"],
+      "statuses": ["To Do", "Coding", "Code Review", "Staging", "Ready For Deploy", "Production", "Closed", "Cancelled"],
+      "transitions": [
+        {"label": "Start Coding",     "from": "To Do",            "to": "Coding"},
+        {"label": "Submit PR",        "from": "Coding",           "to": "Code Review"},
+        {"label": "Approve PR",       "from": "Code Review",      "to": "Staging"},
+        {"label": "Request Changes",  "from": "Code Review",      "to": "Coding"},
+        {"label": "Staging OK",       "from": "Staging",          "to": "Ready For Deploy"},
+        {"label": "Reject",           "from": "Staging",          "to": "Coding"},
+        {"label": "Deployed",         "from": "Ready For Deploy", "to": "Production"},
+        {"label": "Stable",           "from": "Production",       "to": "Closed"},
+        {"label": "Cancel",           "from": "*",                "to": "Cancelled"}
+      ]
+    },
+    "epic": {
+      "label": "Epic",
+      "initial_status": "To Do",
+      "final_statuses": ["Closed", "Cancelled"],
+      "statuses": ["To Do", "In Progress", "Closed", "Cancelled"],
+      "transitions": [
+        {"label": "In Progress",  "from": "To Do",       "to": "In Progress"},
+        {"label": "Done",         "from": "In Progress", "to": "Closed"},
+        {"label": "Cancel",       "from": "*",           "to": "Cancelled"},
+        {"label": "Reopen",       "from": "Cancelled",   "to": "To Do"}
+      ]
+    },
+    "improvement": {
+      "label": "Improvement",
+      "initial_status": "To Do",
+      "final_statuses": ["Closed", "Cancelled"],
+      "statuses": ["To Do", "Coding", "Code Review", "Staging", "Ready For Deploy", "Production", "Closed", "Cancelled"],
+      "transitions": [
+        {"label": "Start Coding",     "from": "To Do",            "to": "Coding"},
+        {"label": "Submit PR",        "from": "Coding",           "to": "Code Review"},
+        {"label": "Approve PR",       "from": "Code Review",      "to": "Staging"},
+        {"label": "Request Changes",  "from": "Code Review",      "to": "Coding"},
+        {"label": "Staging OK",       "from": "Staging",          "to": "Ready For Deploy"},
+        {"label": "Reject",           "from": "Staging",          "to": "Coding"},
+        {"label": "Deployed",         "from": "Ready For Deploy", "to": "Production"},
+        {"label": "Stable",           "from": "Production",       "to": "Closed"},
+        {"label": "Fast-track Close", "from": "*",                "to": "Closed"},
+        {"label": "Cancel",           "from": "*",                "to": "Cancelled"},
+        {"label": "Reopen",           "from": "Cancelled",        "to": "To Do"}
+      ]
+    },
+    "plan": {
+      "label": "Plan",
+      "initial_status": "New Request",
+      "final_statuses": ["Closed", "Cancelled"],
+      "statuses": ["New Request", "Under Review", "Accepted", "Planning", "Plan Review", "Approved", "Closed", "Cancelled"],
+      "transitions": [
+        {"label": "Initial Review",  "from": "New Request",  "to": "Under Review"},
+        {"label": "Accept",          "from": "Under Review", "to": "Accepted"},
+        {"label": "Start Planning",  "from": "Accepted",     "to": "Planning"},
+        {"label": "Submit Plan",     "from": "Planning",     "to": "Plan Review"},
+        {"label": "Approve Plan",    "from": "Plan Review",  "to": "Approved"},
+        {"label": "Plan Reject",     "from": "Plan Review",  "to": "Planning"},
+        {"label": "Stable",          "from": "Approved",     "to": "Closed"},
+        {"label": "Cancel",          "from": "*",            "to": "Cancelled"}
+      ]
+    },
+    "task": {
+      "label": "Task",
+      "initial_status": "To Do",
+      "final_statuses": ["Closed", "Cancelled"],
+      "statuses": ["To Do", "Coding", "Code Review", "Staging", "Ready For Deploy", "Production", "Closed", "Cancelled"],
+      "transitions": [
+        {"label": "Start Coding",     "from": "To Do",            "to": "Coding"},
+        {"label": "Submit PR",        "from": "Coding",           "to": "Code Review"},
+        {"label": "Approve PR",       "from": "Code Review",      "to": "Staging"},
+        {"label": "Request Changes",  "from": "Code Review",      "to": "Coding"},
+        {"label": "Staging OK",       "from": "Staging",          "to": "Ready For Deploy"},
+        {"label": "Reject",           "from": "Staging",          "to": "Coding"},
+        {"label": "Deployed",         "from": "Ready For Deploy", "to": "Production"},
+        {"label": "Stable",           "from": "Production",       "to": "Closed"},
+        {"label": "Fast-track Close", "from": "*",                "to": "Closed"},
+        {"label": "Cancel",           "from": "*",                "to": "Cancelled"},
+        {"label": "Reopen",           "from": "Cancelled",        "to": "To Do"}
+      ]
+    },
+    "sub-task": {
+      "label": "Sub-task",
+      "initial_status": "To Do",
+      "final_statuses": ["Subtask Done"],
+      "statuses": ["To Do", "Subtask In Progress", "Subtask Done"],
+      "transitions": [
+        {"label": "Start Coding",  "from": "To Do",               "to": "Subtask In Progress"},
+        {"label": "Completed",     "from": "Subtask In Progress", "to": "Subtask Done"},
+        {"label": "Reopen",        "from": "Subtask Done",        "to": "Subtask In Progress"},
+        {"label": "Reset",         "from": "*",                   "to": "To Do"}
+      ]
+    }
+  }
+}

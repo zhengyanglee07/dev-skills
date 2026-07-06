@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "id": "ACT-NNN-slug",
+  "type": "action",
+  "title": "",
+  "status": "To Do",
+  "created_at": "",
+
+  "description": "",
+  "verification_criteria": [],
+  "affected_files": [],
+  "solution_summary": "",
+
+  "parent_id": null,
+  "plan_id": null,
+  "blocks": [],
+  "blocked_by": [],
+  "related_to": [],
+
+  "priority": "medium",
+  "tags": [],
+
+  "expected_outcomes": [],
+
+  "started_at": null,
+  "completed_at": null,
+  "completed_by": null,
+  "cancelled_at": null,
+
+  "status_history": [
+    {"from": null, "to": "To Do", "at": "", "transition": "create"}
+  ],
+
+  "commits": [],
+  "decisions": [],
+  "notes": []
+}

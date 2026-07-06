@@ -1,0 +1,167 @@
+@import './tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ---------- base reset & body ---------- */
+* { box-sizing: border-box; }
+html, body, #root { height: 100%; margin: 0; padding: 0; }
+body {
+  font-family: theme('fontFamily.sans');
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text);
+  background: var(--bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ---------- scrollbar polish ---------- */
+*::-webkit-scrollbar { width: 10px; height: 10px; }
+*::-webkit-scrollbar-track { background: transparent; }
+*::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 5px;
+  border: 2px solid var(--bg);
+}
+*::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+/* ---------- focus ring ---------- */
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* ---------- selection ---------- */
+::selection {
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+}
+
+/* ---------- shiki / rehype-pretty-code: keep code blocks readable in both modes ---------- */
+pre[data-language] {
+  background: var(--code-bg) !important;
+  border: 1px solid var(--code-border);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  overflow-x: auto;
+  font-size: 13px;
+  line-height: 1.6;
+  font-family: theme('fontFamily.mono');
+}
+pre[data-language] code { font-family: inherit; }
+[data-rehype-pretty-code-figure] { position: relative; }
+[data-rehype-pretty-code-title] {
+  font-size: 12px;
+  color: var(--text-muted);
+  padding: 6px 12px;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-bottom: none;
+  border-top-left-radius: var(--radius);
+  border-top-right-radius: var(--radius);
+  font-family: theme('fontFamily.mono');
+}
+[data-rehype-pretty-code-title] + pre[data-language] {
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+/* In dark mode, shiki still uses light-theme tokens unless we override. The
+   dual-theme we feed rehype-pretty-code provides both, so we set the
+   background-image to render the dark variant by default. */
+:root code[data-theme*=' '],
+:root code[data-theme*=' '] span {
+  color: var(--shiki-light) !important;
+  background-color: var(--shiki-light-bg) !important;
+}
+.dark code[data-theme*=' '],
+.dark code[data-theme*=' '] span {
+  color: var(--shiki-dark) !important;
+  background-color: var(--shiki-dark-bg) !important;
+}
+
+/* ---------- prose tweaks for docs ---------- */
+.prose { max-width: none; }
+.prose h1, .prose h2, .prose h3, .prose h4 {
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+.prose h1 { font-size: 1.6em; }
+.prose h2 {
+  font-size: 1.25em;
+  margin-top: 1.6em;
+  margin-bottom: 0.6em;
+  padding-bottom: 0.2em;
+  border-bottom: 1px solid var(--border);
+}
+.prose h3 { font-size: 1.05em; margin-top: 1.4em; }
+.prose p { margin: 0.8em 0; }
+.prose ul, .prose ol { padding-left: 1.4em; margin: 0.6em 0; }
+.prose li { margin: 0.2em 0; }
+.prose a { color: var(--accent); text-decoration: none; }
+.prose a:hover { text-decoration: underline; }
+.prose blockquote {
+  border-left: 3px solid var(--accent);
+  padding: 0.2em 1em;
+  color: var(--text-soft);
+  font-style: italic;
+  margin: 1em 0;
+  background: var(--surface-2);
+}
+.prose code:not(pre code) {
+  background: var(--code-bg);
+  border: 1px solid var(--code-border);
+  padding: 0.1em 0.35em;
+  border-radius: 4px;
+  font-size: 0.92em;
+  font-family: theme('fontFamily.mono');
+}
+.prose pre code { background: transparent; border: none; padding: 0; }
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1em 0;
+  font-size: 0.95em;
+}
+.prose th, .prose td {
+  border: 1px solid var(--border);
+  padding: 6px 10px;
+  text-align: left;
+}
+.prose th { background: var(--surface-2); font-weight: 600; }
+.prose hr { border: none; border-top: 1px solid var(--border); margin: 1.5em 0; }
+.prose img { max-width: 100%; border-radius: var(--radius); }
+.prose .task-list-item { list-style: none; margin-left: -1.2em; }
+.prose .task-list-item input[type='checkbox'] { margin-right: 6px; }
+
+/* ---------- gentle utilities ---------- */
+.shadow-soft-sm { box-shadow: theme('boxShadow.soft-sm'); }
+.shadow-soft    { box-shadow: theme('boxShadow.soft'); }
+.shadow-soft-md { box-shadow: theme('boxShadow.soft-md'); }
+.shadow-soft-lg { box-shadow: theme('boxShadow.soft-lg'); }
+
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { scrollbar-width: none; }
+
+.text-balance { text-wrap: balance; }
+
+/* ---------- spinner ---------- */
+@keyframes spin { to { transform: rotate(360deg); } }
+.spin { animation: spin 0.8s linear infinite; }
+
+/* ---------- tooltip-style z-index ---------- */
+.tooltip {
+  position: fixed;
+  z-index: 9999;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-sm);
+  box-shadow: theme('boxShadow.soft-md');
+  padding: 8px 10px;
+  font-size: 12px;
+  pointer-events: none;
+  max-width: 320px;
+}

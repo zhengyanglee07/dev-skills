@@ -1,0 +1,74 @@
+/* Design tokens. Mirrors the palette the previous vanilla SPA used, exposed
+   as CSS custom properties so Tailwind's `bg-surface`, `text-ink-muted`, etc.
+   resolve correctly. Dark mode overrides the same names under `.dark` on
+   <html>. */
+
+:root {
+  --bg: #f7f7f5;
+  --surface: #ffffff;
+  --surface-2: #fafaf9;
+  --surface-3: #f4f3f0;
+
+  --border: #e7e5e4;
+  --border-strong: #d6d3d1;
+
+  --text: #1c1917;
+  --text-muted: #78716c;
+  --text-soft: #57534e;
+
+  --accent: #0369a1;
+  --accent-soft: #e0f2fe;
+  --accent-strong: #0c4a6e;
+
+  --code-bg: #f1f0ed;
+  --code-border: #e7e2da;
+
+  --warn-bg: #fef3c7;
+  --warn-fg: #92400e;
+
+  --success: #15803d;
+  --success-soft: #dcfce7;
+
+  --danger: #b91c1c;
+  --danger-soft: #fee2e2;
+
+  --info: #1d4ed8;
+  --info-soft: #dbeafe;
+
+  --neutral-soft: #f5f5f4;
+}
+
+.dark {
+  --bg: #0c0a09;
+  --surface: #1c1917;
+  --surface-2: #15110f;
+  --surface-3: #211d1b;
+
+  --border: #292524;
+  --border-strong: #44403c;
+
+  --text: #f5f5f4;
+  --text-muted: #a8a29e;
+  --text-soft: #d6d3d1;
+
+  --accent: #38bdf8;
+  --accent-soft: #082f49;
+  --accent-strong: #7dd3fc;
+
+  --code-bg: #1f1b18;
+  --code-border: #2d2823;
+
+  --warn-bg: #422006;
+  --warn-fg: #fde68a;
+
+  --success: #4ade80;
+  --success-soft: #052e16;
+
+  --danger: #fca5a5;
+  --danger-soft: #450a0a;
+
+  --info: #93c5fd;
+  --info-soft: #172554;
+
+  --neutral-soft: #292524;
+}

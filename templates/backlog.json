@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "id": "BLG-NNN-slug",
+  "type": "backlog",
+  "title": "",
+  "status": "Needs Clarification",
+  "created_at": "",
+
+  "description": "",
+
+  "what_is_unclear": "",
+  "clarification_questions": [],
+
+  "intended_type": null,
+  "converted_to": null,
+
+  "parent_id": null,
+  "plan_id": null,
+  "blocks": [],
+  "blocked_by": [],
+  "related_to": [],
+
+  "priority": "medium",
+  "tags": [],
+
+  "started_at": null,
+  "converted_at": null,
+  "completed_by": null,
+  "cancelled_at": null,
+
+  "status_history": [
+    {"from": null, "to": "Needs Clarification", "at": "", "transition": "create"}
+  ],
+
+  "commits": [],
+  "decisions": [],
+  "notes": []
+}

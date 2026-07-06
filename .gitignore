@@ -1,0 +1,40 @@
+# ---- Project Spaces ----
+# Per SKILL.md: work-item JSON + index.json under Spaces/ are local-only
+# tracking. Never stage or commit them. Record commit SHAs in the JSON after
+# the commit lands, but don't put the files in git.
+Spaces/
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# ---- Node / build outputs ----
+# (web/ has its own .gitignore for node_modules/dist; this catches stray top-level)
+node_modules/
+dist/
+build/
+*.tsbuildinfo
+.vite/
+
+# ---- Logs ----
+*.log
+logs/
+
+# ---- Env / secrets ----
+.env
+.env.local
+.env.*.local
+
+# ---- Editor / IDE ----
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ---- OS noise ----
+.DS_Store
+Thumbs.db
+desktop.ini
